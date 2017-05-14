@@ -1,0 +1,23 @@
+<import src="movie-list/movie-list-template.wxml" />
+<import src="movie-grid/movie-grid-template.wxml" />
+<view class="search">
+  <icon type="search" class="search-img" size="13" color="#405f80" />
+  <input type="text" placeholder="血战钢锯岭" placeholder-class="placeholder" bindfocus="onBindFocus" bindconfirm="onBindChange"/>
+  <image wx:if="{{searchPanelShow === true}}" class="xx-img" src="/images/xx.png" bindtap="onCancelImgTap"></image>
+</view>
+<view class="container" wx:if="{{containerShow}}">
+  <!--这里分别向同一个模板中注册了3次movies,用来在具体的模板中进行遍历展现-->
+  <view class="movies-template">
+    <template is="movieListTemplate" data="{{...inTheaters}}"></template>
+  </view>
+  <view class="movies-template">
+    <template is="movieListTemplate" data="{{...comingSoon}}"></template>
+  </view>
+  <view class="movies-template">
+    <template is="movieListTemplate" data="{{...top250}}"></template>
+  </view>
+</view>
+
+<view class="search-panel" wx:if="{{searchPanelShow}}">
+  <template is="movieGridTemplate" data="{{...searchResult}}"></template>
+</view>
